@@ -5,7 +5,7 @@ Some of Apache's matrix utility classes are used to perform inversion of matrice
 
 The following two linux terminal commands...
 
-1. _javac -classpath .:/home/USERNAME/Downloads/commons-math3-3.6.1/commons-math3-3.6.1.jar gitjavamatrix/Main.java gitjavamatrix/Inverse.java_
+1. _javac -classpath .:/home/USERNAME/Downloads/commons-math3-3.6.1/commons-math3-3.6.1.jar gitjavamatrix/Main.java_
 
 2. _java -classpath .:/home/USERNAME/Downloads/commons-math3-3.6.1/commons-math3-3.6.1.jar gitjavamatrix/Main_
 

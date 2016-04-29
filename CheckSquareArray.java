@@ -6,12 +6,12 @@ public interface CheckSquareArray   {
 
     //Check that the matrix is suitable dimension.
     //n is the matrix's dimension.
-    public void isCorrectDimension(int n);
+    void isCorrectDimension(int n);
     
     //Check that the matrix is square.
-    public void isItDouble();
+    void isItDouble();
     
     //Check that the matrix is square.
-    public void isSquare();
+    void isSquare();
 }
 

@@ -5,10 +5,6 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
-//Import the implemented interface.
-import gitjavamatrix.CheckSquareArray;
-
-
 
 //A class for calculating inverses of n x n-dimension matrices:
 //A new object is instantiated for each new matrix that is required to be inverted.

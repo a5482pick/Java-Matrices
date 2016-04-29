@@ -6,25 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//A class for calculating inverses of n x n-dimension matrices:
-//A new object is instantiated for each new matrix that is required to be inverted.
-public class Inverse implements CheckSquareArray  {
+//A class to find the eigenvalues of n x n matrix.
+public class Eigenvalues implements CheckSquareArray  {
 
 
     //'goAhead' is a property that's set to zero, if terminate early.
     //The default is to allow the calculation to go ahead regardless.
     private int goAhead = 1;
+    
+    //An instance variable to store the eigenvalues.
+    private double[] eigenvalues = {0,0}; 
 
     //doubleVal is an ArrayList object where the values for the matrix instance are stored.
     private List<Double[]> doubleVal = new ArrayList<Double[]>();
     
-    //Each matrix instance may have an associated inverse.  Each item of the inverse
-    //will be stored in the 'invertedMatrx' instance variable.  Max matrix size: 10 x 10.
-    private double[][] invertedMatrix = new double[10][10]; 
-    
     
     //The argument of the CONSTRUCTOR takes n arrays of size n. (i.e. n row arrays.) 
-    public Inverse(Double[]... array)   {
+    public Eigenvalues(Double[]... array)   {
     
         //Add each of the n arrays (of size n) to the ArrayList object.
         for (int i = 0; i < array.length; i++)   {
@@ -33,23 +31,6 @@ public class Inverse implements CheckSquareArray  {
         }
     }
     
-    //invertedMatrix getter.
-    public double[][] getInvertedMatrix()   {
-    
-        return invertedMatrix;
-    }
-    
-    //invertedMatrix setter.
-    public void setInvertedMatrix(double[][] array)   {
-    
-        for (int i = 0; i < array.length; i++)   {
-        
-            for (int j = 0; j < array.length; j++)   {
-            
-                this.invertedMatrix[i][j] = array[i][j];
-            }
-        }
-    }
     
     //goAhead getter.
     public int getGoAhead()   {
@@ -66,7 +47,7 @@ public class Inverse implements CheckSquareArray  {
     //doubleVal getter.
     public List<Double[]> getDoubleVal()   {
     
-        return doubleVal;
+        return this.doubleVal;
     }
     
     //doubleVal setter.
@@ -78,7 +59,22 @@ public class Inverse implements CheckSquareArray  {
             this.doubleVal.add(array[i]);
         }
     }
+    
+    //eigenvalues getter.
+    public double[] getEigenvalues()   {
+    
+        return this.eigenvalues;
+    }
+    
+    //eigenvalues setter.
+    public void setEigenvalues(double[] array)   {
+    
+        for (int i = 0; i < array.length; i++)   {
         
+            this.eigenvalues[i] = array[i];
+        }
+    }
+    
     
     /*---------------------------------------------------------------------------------*/
     
@@ -97,14 +93,14 @@ public class Inverse implements CheckSquareArray  {
         }
     }
     
-    //Let's limit the matrix to elements of magnitude <= 1000.
+    //Let's limit the matrix to elements of magnitude <= 20.
     public void isItDouble()   {
     
         for (int i = 0; i < doubleVal.size(); i++)   {
         
             for (int j = 0; j  < doubleVal.get(i).length; j++)   {
         
-                if (doubleVal.get(i)[j].doubleValue() > 1000)   {
+                if (doubleVal.get(i)[j].doubleValue() > 20)   {
             
                     System.out.println("Not an appropriate element type.");
                     this.setGoAhead(0);
@@ -129,8 +125,8 @@ public class Inverse implements CheckSquareArray  {
     
     /*--------------------------------------------------------------------------------------*/
 
-    //Until now, dimensions where of unknown n.  Here calculate specifically for n = 2.
-    public void invert2D()  {
+    //Also, calculate the eigenvalues of that 2 x 2 matrix.
+    public void eigenvalues()  {
     
         if (this.getGoAhead() != 0)   {
       
@@ -149,7 +145,7 @@ public class Inverse implements CheckSquareArray  {
                 array0[i] = array0D[i].doubleValue();
                 array1[i] = array1D[i].doubleValue();
             }
-         
+        
             //A class from Apache has a matrix instantiated on it. 
             Array2DRowRealMatrix matrix = new Array2DRowRealMatrix(2, 2);
 
@@ -157,34 +153,12 @@ public class Inverse implements CheckSquareArray  {
             matrix.setRow(0, array0);
             matrix.setRow(1, array1);        
         
-            //Apache's MatrixUtils allows us to perform the inversion.
-            //Define inverse, as reference data type 'interface RealMatrix'.
-            RealMatrix inverse = MatrixUtils.inverse(matrix);
-        
-            //Save the top and bottom row of the resulting matrix as properties of the new object.
-            double[] invertedArray0 = inverse.getRow(0);       //top.
-            double[] invertedArray1 = inverse.getRow(1);       //bottom.
+            //Create an object that can perform the eigendecomposition.
+            EigenDecomposition eigen = new EigenDecomposition(matrix);
             
-            //Print to screen.
-            System.out.println("Matrix after inversion:");
-            System.out.println(Arrays.toString(invertedArray0));
-            System.out.println(Arrays.toString(invertedArray1));
-            
-            
-            //Also, save the inversion as a 2D array.
-            double[][] invertedMatrix = new double[10][10]; 
-            
-            for (int i = 0; i < 2; i++)   {
-                
-                for (int j = 0; j < 2; j++)   {
-                
-                    invertedMatrix[i][j] = inverse.getEntry(i,j);
-                }
-            }
-            
-            //Finally set the private instance variable.
-            this.setInvertedMatrix(invertedMatrix);
-            
+            //Save the eigenvalues in an array.
+            this.eigenvalues = eigen.getRealEigenvalues();
+                        
         } //end 'if true...'
         
         else   {

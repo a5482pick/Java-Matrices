@@ -1,6 +1,6 @@
-**_Inversion of matrices, using Java._**
+**_Inversion, eigenvalues of matrices, using Java._**
 
-Some of Apache's matrix utility classes are used to perform inversion of matrices.  A 2 x 2 example is provided.  The code is deliberately written in a way that demonstrates a variety of techniques, but also in a way that should make adding classes relatively easy.
+Some of Apache's matrix utility classes are used to find the inverse and the eigenvalues of matrices.  A 2 x 2 example is provided.  It's written in a way that allows me to experiment with as many different techniques as possible, but also in a way that should make adding classes relatively easy.
 
 
 The following two linux terminal commands...

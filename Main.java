@@ -37,6 +37,7 @@ public class Main  {
         Double[] array0 = {0.5, -0.5};
         Double[] array1 = {-0.33333, 0.66666};
         
+        /*---------------------------------------------------------------------------------*/
         
         //Instantiate an object to be inverted, then apply the inverting method.
         Inverse inverse = new Inverse(array0, array1);
@@ -49,7 +50,6 @@ public class Main  {
         //Perform the inversion.
         inverse.invert2D();
         
-        /*-----------------------------------------------------------------------------------*/
         
         //Print the matrix a second time, to ensure it is 'saved'.
         double[][] invertedMatrix = inverse.getInvertedMatrix();
@@ -63,6 +63,22 @@ public class Main  {
             
                 System.out.println(", " + invertedMatrix[i][j]);
             }
+        }
+        
+        /*-------------------------------------------------------------------------------------*/
+        
+        
+        //And now perform an eigendecomposition on the example matrix.        
+        Eigenvalues eigenObject = new Eigenvalues(array0, array1);
+        
+        eigenObject.eigenvalues();
+        
+        //Print out the eigenvalues.
+        double[] theEigenvalues = eigenObject.getEigenvalues();
+        
+        for (int i = 0; i < Main.getDimension()[0]; i++)   {
+        
+            System.out.println("The eigenvalue " + (i + 1) + ":  " + theEigenvalues[i] + " ");
         } 
     }      
 }

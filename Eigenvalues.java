@@ -125,8 +125,8 @@ public class Eigenvalues implements CheckSquareArray  {
     
     /*--------------------------------------------------------------------------------------*/
 
-    //Also, calculate the eigenvalues of that 2 x 2 matrix.
-    public void eigenvalues()  {
+    //Calculate the eigenvalues of the 2 x 2 matrix example.
+    public void eigenvalues2D()  {
     
         if (this.getGoAhead() != 0)   {
       

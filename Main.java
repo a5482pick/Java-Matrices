@@ -68,10 +68,10 @@ public class Main  {
         /*-------------------------------------------------------------------------------------*/
         
         
-        //And now perform an eigendecomposition on the example matrix.        
+        //And now perform an eigendecomposition on the example 2D matrix.        
         Eigenvalues eigenObject = new Eigenvalues(array0, array1);
         
-        eigenObject.eigenvalues();
+        eigenObject.eigenvalues2D();
         
         //Print out the eigenvalues.
         double[] theEigenvalues = eigenObject.getEigenvalues();

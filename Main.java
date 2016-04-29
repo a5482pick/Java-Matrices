@@ -34,6 +34,7 @@ public class Main  {
         Main.setDimension(2, 2);
         
         //Then create the example matrix: array0 is the top row, array1 is the bottom row.
+        //(Other methods demand accuracy limited to 5 d.p.).
         Double[] array0 = {0.5, -0.5};
         Double[] array1 = {-0.33333, 0.66666};
         
@@ -61,7 +62,7 @@ public class Main  {
         
             for (int j = 0; j < Main.getDimension()[1]; j++)   {
             
-                System.out.println(", " + invertedMatrix[i][j]);
+                System.out.println("row " + (i + 1) + "   " + invertedMatrix[i][j]);
             }
         }
         

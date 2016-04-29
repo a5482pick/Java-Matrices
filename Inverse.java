@@ -44,7 +44,7 @@ public class Inverse implements CheckSquareArray  {
     
         for (int i = 0; i < array.length; i++)   {
         
-            for (int j = 0; j < array.length; j++)   {
+            for (int j = 0; j < array[i].length; j++)   {
             
                 this.invertedMatrix[i][j] = array[i][j];
             }

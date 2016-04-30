@@ -16,6 +16,7 @@ public interface CheckSquareArray   {
     
     //At a later date, added a default method that warns if a row is all zeros.
     //Assume an accuracy of 5 d.p. on our provided values.
+    //Note that identical instance methods will take precedence.
     default public void rowZeros(Double[]... array)   {
     
         for (int i = 0; i < array.length; i++)   {

@@ -15,7 +15,7 @@ public class Inverse implements CheckSquareArray  {
     //The default is to allow the calculation to go ahead regardless.
     private int goAhead = 1;
 
-    //doubleVal is an ArrayList object where the values for the matrix instance are stored.
+    //doubleVal is an ArrayList instance where the values for the matrix instance are stored.
     private List<Double[]> doubleVal = new ArrayList<Double[]>();
     
     //Each matrix instance may have an associated inverse.  Each item of the inverse
@@ -133,29 +133,20 @@ public class Inverse implements CheckSquareArray  {
     public void invert2D()  {
     
         if (this.getGoAhead() != 0)   {
-      
-            //array0D is the top row, array1D is the bottom row.
+        
+            //For this demonstration, the 2 x 2 matrix will be retrieved as two rows.
             Double[] array0D = doubleVal.get(0);
             Double[] array1D = doubleVal.get(1);
-        
-            //To use Apache matrix methods, will need to transform to primitive type.
-            //array0 and array1 will store the rows in primitive type.
-            double[] array0 = {0,0};
-            double[] array1 = {0,0};
-        
-            //Loop twice to store all four elements as primitive type.
-            for (int i = 0; i < 2; i++)   {
-        
-                array0[i] = array0D[i].doubleValue();
-                array1[i] = array1D[i].doubleValue();
-            }
+      
+            //But the rows need to be transformed to primitive type.  So call a utility method:
+            double[][] dataDoublePrimitive = MyUtility.rowsToDoublePrim(array0D, array1D);
          
             //A class from Apache has a matrix instantiated on it. 
             Array2DRowRealMatrix matrix = new Array2DRowRealMatrix(2, 2);
 
-            //The values are added.
-            matrix.setRow(0, array0);
-            matrix.setRow(1, array1);        
+            //The values, now in primitive type, may now be added.
+            matrix.setRow(0, dataDoublePrimitive[0]);
+            matrix.setRow(1, dataDoublePrimitive[1]);        
         
             //Apache's MatrixUtils allows us to perform the inversion.
             //Define inverse, as reference data type 'interface RealMatrix'.

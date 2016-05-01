@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//A class for calculating inverses of n x n-dimension matrices:
+//A class for calculating inverses of the n x n-dimension matrices:
 //A new object is instantiated for each new matrix that is required to be inverted.
 public class Inverse implements CheckSquareArray  {
 
@@ -98,7 +98,7 @@ public class Inverse implements CheckSquareArray  {
     }
     
     //Let's limit the matrix to elements of magnitude <= 1000.
-    public void isItDouble()   {
+    public void isItCorrectSize()   {
     
         for (int i = 0; i < doubleVal.size(); i++)   {
         
@@ -137,7 +137,7 @@ public class Inverse implements CheckSquareArray  {
             //For this demonstration, the 2 x 2 matrix will be retrieved as two rows.
             Double[] array0D = doubleVal.get(0);
             Double[] array1D = doubleVal.get(1);
-      
+
             //But the rows need to be transformed to primitive type.  So call a utility method:
             double[][] dataDoublePrimitive = MyUtility.rowsToDoublePrim(array0D, array1D);
          
@@ -157,7 +157,7 @@ public class Inverse implements CheckSquareArray  {
             double[] invertedArray1 = inverse.getRow(1);       //bottom.
             
             //Print to screen.
-            System.out.println("Matrix after inversion:");
+            System.out.println("Matrix after inversion, reported from class Inverse:");
             System.out.println(Arrays.toString(invertedArray0));
             System.out.println(Arrays.toString(invertedArray1));
             

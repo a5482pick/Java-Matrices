@@ -17,6 +17,7 @@ public abstract class MyUtility   {
 
     //A method to return the rows in primitive double format.
     //The rows are received in object Double format.
+    //This also works when one Double[][] matrix is passed as an argument.
     public static double[][] rowsToDoublePrim(Double[]... array)   {
         
         //For each row:
@@ -38,5 +39,19 @@ public abstract class MyUtility   {
         
         //Return the n x n primitive double matrix.
         return returnedMatrix;
+    }
+    
+    
+    //Perhaps the trace of our square matrix structures will be required.  The trace is calculated here:    
+    public static double theTrace(Double[]... array)   {
+    
+        double trace = 0.0;
+        
+        for (int i = 0; i < array.length; i++)   {
+        
+            trace = trace + array[i][i];
+        }
+      
+        return trace;
     }
 }

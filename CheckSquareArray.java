@@ -1,38 +1,51 @@
 package gitjavamatrix;
 
-//An interface type to specify any of the properties we want for our square matrix:
-//We implement checkSquareArray whenever we demand that a matrix be square n x n.
+//An interface type that specifies our fundamental properties for our matrix-like structures:
+//These are matrix dimension and shape, and element size and accuracy.
 public interface CheckSquareArray   {
 
     //Check that the matrix is suitable dimension.
     //n is the matrix's dimension.
     void isCorrectDimension(int n);
     
-    //Check that the matrix is square.
-    void isItDouble();
+    //Check that the matrix elements are in required size bounds.
+    void isItCorrectSize();
     
     //Check that the matrix is square.
     void isSquare();
     
-    //At a later date, added a default method that warns if a row is all zeros.
-    //Assume an accuracy of 5 d.p. on our provided values.
-    //Note that identical instance methods will take precedence.
+    //At a later date, added a default method.
+    //This default method issues a warning, when a row is all zeros to an accuracy of 5 d.p.
+    //Override this method if want different accuracy levels.
     default public void rowZeros(Double[]... array)   {
-    
-        for (int i = 0; i < array.length; i++)   {
         
-            Double sum = 0.0;
+        //If this is still false after checks, issue no warning.
+        boolean issueWarning = false;
+        
+        for (int i = 0; i < array.length; i++)   {
+                   
+            //This will set to false if a row has a non-zero number.
+            boolean failedTest = true;
         
             for (int j = 0; j < array[i].length; j++)   {
             
-                sum = sum + array[i][j]; 
+                //If any num on the row is non-zero, can proceed without warning.
+                if (array[i][j] > 0.000001 || array[i][j] < -0.000001)   {
+                
+                    failedTest = false;
+                }
             }
             
-            if (sum < 0.000001)    {
+            if (failedTest)   {
             
-                System.out.println("Warning:  You've a row that's all zeros.");
+                issueWarning = true;
             }
         }
+        
+        if (issueWarning)   {
+         
+            System.out.println("You've a non-zero row.");
+        } 
     }
 }
 

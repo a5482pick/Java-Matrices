@@ -38,16 +38,19 @@ public class Main  {
         Double[] array0 = {0.5, -0.5};
         Double[] array1 = {-0.33333, 0.66666};
         
-        /*---------------------------------------------------------------------------------*/
-        
+       
         //Instantiate an object to be inverted, then apply the inverting method.
         Inverse inverse = new Inverse(array0, array1);
         
         //These are extra checks that may be performed prior to calculation on Inverse object.
         inverse.isCorrectDimension(2);
-        inverse.isItDouble();
+        inverse.isItCorrectSize();
         inverse.isSquare();
-        
+        inverse.rowZeros(array0, array1);
+   
+        //If we wish to know the trace:       
+        System.out.println("The trace of the submitted matrix is   " + MyUtility.theTrace(array0,array1));       
+
         //Perform the inversion.
         inverse.invert2D();
         
@@ -58,7 +61,7 @@ public class Main  {
         //(The output matrix elements will all be zero if the calculation was not performed.)      
         for (int i = 0; i < Main.getDimension()[0]; i++)   {
         
-            System.out.println("The matrix after inversion, row " + (i+1) + ":");
+            System.out.println("The matrix after inversion (reported from class Main), row " + (i+1) + ":");
         
             for (int j = 0; j < Main.getDimension()[1]; j++)   {
             

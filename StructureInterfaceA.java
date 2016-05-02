@@ -2,7 +2,7 @@ package gitjavamatrix;
 
 //An interface type that specifies our fundamental properties for our matrix-like structures:
 //These are matrix dimension and shape, and element size and accuracy.
-public interface CheckSquareArray   {
+public interface StructureInterfaceA   {
 
     //Check that the matrix is suitable dimension.
     //n is the matrix's dimension.

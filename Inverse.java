@@ -8,7 +8,7 @@ import java.util.List;
 
 //A class for calculating inverses of the n x n-dimension matrices:
 //A new object is instantiated for each new matrix that is required to be inverted.
-public class Inverse implements CheckSquareArray  {
+public class Inverse implements StructureInterfaceA  {
 
 
     //'goAhead' is a property that's set to zero, if terminate early.

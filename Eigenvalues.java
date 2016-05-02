@@ -7,7 +7,7 @@ import java.util.List;
 
 
 //A class to find the eigenvalues of n x n matrix.
-public class Eigenvalues implements CheckSquareArray  {
+public class Eigenvalues implements StructureInterfaceA  {
 
 
     //'goAhead' is a property that's set to zero, if terminate early.
@@ -93,14 +93,14 @@ public class Eigenvalues implements CheckSquareArray  {
         }
     }
     
-    //Let's limit the matrix to elements of magnitude <= 20.
-    public void isItDouble()   {
+    //Let's limit the matrix to elements of magnitude <= 1000.
+    public void isItCorrectSize()   {
     
         for (int i = 0; i < doubleVal.size(); i++)   {
         
             for (int j = 0; j  < doubleVal.get(i).length; j++)   {
         
-                if (doubleVal.get(i)[j].doubleValue() > 20)   {
+                if (doubleVal.get(i)[j].doubleValue() > 1000)   {
             
                     System.out.println("Not an appropriate element type.");
                     this.setGoAhead(0);

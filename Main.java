@@ -4,7 +4,7 @@ import org.apache.commons.math3.linear.*;
 import java.util.Arrays;
 import java.io.*;
  
-public class Main  {
+public class Main   {
  
     //Set the default matrix dimension as 2 x 2;
     //Use the following getter and setter to alter. 
@@ -40,23 +40,24 @@ public class Main  {
         
        
         //Instantiate an object to be inverted, then apply the inverting method.
-        Inverse inverse = new Inverse(array0, array1);
+        //For generality, use StructureInterfaceA type, rather than Inverse.
+        StructureInterfaceA inverse = new Inverse(array0, array1);
         
         //These are extra checks that may be performed prior to calculation on Inverse object.
         inverse.isCorrectDimension(2);
         inverse.isItCorrectSize();
-        inverse.isSquare();
+        inverse.isCorrectShape();
         inverse.rowZeros(array0, array1);
    
         //If we wish to know the trace:       
-        System.out.println("The trace of the submitted matrix is   " + MyUtility.theTrace(array0,array1));       
+        System.out.println("\n" + "The trace of the submitted matrix is   " + MyUtility.theTrace(array0,array1));       
 
         //Perform the inversion.
-        inverse.invert2D();
-        
+        ((Inverse)inverse).invert2D();
         
         //Print the matrix a second time, to ensure it is 'saved'.
-        double[][] invertedMatrix = inverse.getInvertedMatrix();
+        //Use a cast to confirm we are sure we've an Inverse object.
+        double[][] invertedMatrix = ((Inverse)inverse).getInvertedMatrix();
         
         //(The output matrix elements will all be zero if the calculation was not performed.)      
         for (int i = 0; i < Main.getDimension()[0]; i++)   {
@@ -72,17 +73,23 @@ public class Main  {
         /*-------------------------------------------------------------------------------------*/
         
         
-        //And now perform an eigendecomposition on the example 2D matrix.        
-        Eigenvalues eigenObject = new Eigenvalues(array0, array1);
+        //And now perform an eigendecomposition on the example 2D matrix.  
+        //StructureInterfaceB lists 
+        StructureInterfaceB eigenObject = new Eigenvalues(array0, array1);
         
+        //Check a feature of the matrix.        
+        eigenObject.isItCorrectSize();
+        
+        //Calculate the eigenvalues.
         eigenObject.eigenvalues2D();
-        
-        //Print out the eigenvalues.
+
+        //Bring the eigenvalues over to class Main, and print them out. 
         double[] theEigenvalues = eigenObject.getEigenvalues();
         
         for (int i = 0; i < Main.getDimension()[0]; i++)   {
         
-            System.out.println("The eigenvalue " + (i + 1) + ":  " + theEigenvalues[i] + " ");
+            System.out.println("The eigenvalue (for the non-inverted matrix)" + (i + 1) + ":  " + theEigenvalues[i] + " ");
         } 
+  
     }      
 }

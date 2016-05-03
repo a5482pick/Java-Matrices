@@ -6,33 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//A class for calculating inverses of the n x n-dimension matrices:
+//A class for calculating inverses of our matrix structures:
 //A new object is instantiated for each new matrix that is required to be inverted.
-public class Inverse implements StructureInterfaceA  {
+public class Inverse extends Implementation implements StructureInterfaceA  {
 
-
-    //'goAhead' is a property that's set to zero, if terminate early.
-    //The default is to allow the calculation to go ahead regardless.
-    private int goAhead = 1;
-
-    //doubleVal is an ArrayList instance where the values for the matrix instance are stored.
-    private List<Double[]> doubleVal = new ArrayList<Double[]>();
-    
     //Each matrix instance may have an associated inverse.  Each item of the inverse
     //will be stored in the 'invertedMatrx' instance variable.  Max matrix size: 10 x 10.
     private double[][] invertedMatrix = new double[10][10]; 
-    
-    
-    //The argument of the CONSTRUCTOR takes n arrays of size n. (i.e. n row arrays.) 
+
+    //The constructor.
     public Inverse(Double[]... array)   {
-    
-        //Add each of the n arrays (of size n) to the ArrayList object.
-        for (int i = 0; i < array.length; i++)   {
-        
-            this.doubleVal.add(array[i]);
-        }
+
+        super(array);
     }
-    
+
     //invertedMatrix getter.
     public double[][] getInvertedMatrix()   {
     
@@ -50,88 +37,13 @@ public class Inverse implements StructureInterfaceA  {
             }
         }
     }
-    
-    //goAhead getter.
-    public int getGoAhead()   {
-    
-        return goAhead;
-    }
-    
-    //goAhead setter.
-    public void setGoAhead(int i)   {
-    
-        this.goAhead = i;
-    }
-    
-    //doubleVal getter.
-    public List<Double[]> getDoubleVal()   {
-    
-        return doubleVal;
-    }
-    
-    //doubleVal setter.
-    public void setDoubleVal(Double[]... array)   {
-    
-        //Add each of the n arrays (of size n) to the ArrayList object.
-        for (int i = 0; i < array.length; i++)   {
-        
-            this.doubleVal.add(array[i]);
-        }
-    }
-        
-    
-    /*---------------------------------------------------------------------------------*/
-    
-    //The three methods required by the interface implementation:
-    
-    //Check that each row is the same length as the number of rows.
-    public void isCorrectDimension(int n)   {
-    
-        for (int i = 0; i < doubleVal.size(); i++)   {
-        
-            if (doubleVal.get(i).length != n)   {
-            
-                System.out.println("Not an appropriate matrix dimension.");
-                this.setGoAhead(0);
-            }
-        }
-    }
-    
-    //Let's limit the matrix to elements of magnitude <= 1000.
-    public void isItCorrectSize()   {
-    
-        for (int i = 0; i < doubleVal.size(); i++)   {
-        
-            for (int j = 0; j  < doubleVal.get(i).length; j++)   {
-        
-                if (doubleVal.get(i)[j].doubleValue() > 1000)   {
-            
-                    System.out.println("Not an appropriate element type.");
-                    this.setGoAhead(0);
-                }
-            }
-        }
-    }
 
-    //Check that the matrix is square.
-    public void isSquare()   {
-    
-        for (int i = 0; i < doubleVal.size(); i++)   {
-        
-            if (doubleVal.get(i).length != doubleVal.size())   {
-            
-                System.out.println("Not a square matrix.");
-                this.setGoAhead(0);
-            }
-        }
-    }
-    
-    
-    /*--------------------------------------------------------------------------------------*/
 
-    //Until now, dimensions where of unknown n.  Here calculate specifically for n = 2.
+    //Here calculate specifically for n = 2.
+    //Assume our matrices behave exactly like normal matrices:  hence we demand a square matrix.
     public void invert2D()  {
     
+        //A goAhead of 0 means e.g. the matrix is not square.
         if (this.getGoAhead() != 0)   {
         
             //For this demonstration, the 2 x 2 matrix will be retrieved as two rows.
@@ -181,7 +93,7 @@ public class Inverse implements StructureInterfaceA  {
         else   {
         
             //If goAhead has been set to zero:
-            System.out.println("The calculation has not proceeded, because the checking methods were called.");
+            System.out.println("\n" + "The inversion calculation has not proceeded, because the checking methods were called.  (The following zeros are default vals.)");
         }
     }
 }   

@@ -4,17 +4,16 @@ package gitjavamatrix;
 //These are matrix dimension and shape, and element size and accuracy.
 public interface StructureInterfaceA   {
 
-    //Check that the matrix is suitable dimension.
-    //n is the matrix's dimension.
+    //Specifies how we handle matrix dimension e.g. we can ignore surplus elements.
+    //n is the number of columns.
     void isCorrectDimension(int n);
     
-    //Check that the matrix elements are in required size bounds.
+    //Specify what to do if matrix elements are e.g too large. e.g. could use modular arithmetic.
     void isItCorrectSize();
     
-    //Check that the matrix is square.
-    void isSquare();
+    //Specify how to deal with knowledge of shape.
+    void isCorrectShape();
     
-    //At a later date, added a default method.
     //This default method issues a warning, when a row is all zeros to an accuracy of 5 d.p.
     //Override this method if want different accuracy levels.
     default public void rowZeros(Double[]... array)   {

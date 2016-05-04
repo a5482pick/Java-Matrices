@@ -8,6 +8,8 @@ Unless stated otherwise, our structures behave exactly like normal matrices.
 
 A 2 x 2 matrix example is provided.  It's written in a way that allows for experimenting with as many different techniques as possible, but also in a way that should make adding classes and methods relatively easy.
 
+One of the techniques demonstrates the creation and use of a generic double array.  This demanded the implementation of reflection.
+
 
 The following two linux terminal commands...
 

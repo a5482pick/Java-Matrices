@@ -3,6 +3,7 @@ package gitjavamatrix;
 import org.apache.commons.math3.linear.*;
 import java.util.Arrays;
 import java.io.*;
+import java.lang.reflect.Array;
  
 public class Main   {
  
@@ -90,6 +91,13 @@ public class Main   {
         
             System.out.println("The eigenvalue (for the non-inverted matrix)" + (i + 1) + ":  " + theEigenvalues[i] + " ");
         } 
+        
+        
+        //And now demonstrate the inversion using generics and reflection.
+        //This approach calls a constructor that allows matrices of non-Double elements to be processed.
+        Integer[][] aMatrix = {{1,1},{1,2}};
+        Inverse inverseTwo = new Inverse(aMatrix, Integer.class, 2);
+        inverseTwo.invert2D();
   
     }      
 }

@@ -4,7 +4,7 @@ import org.apache.commons.math3.linear.*;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.lang.reflect.Array;
 
 //A class for calculating inverses of our matrix structures:
 //A new object is instantiated for each new matrix that is required to be inverted.
@@ -14,12 +14,44 @@ public class Inverse extends Implementation implements StructureInterfaceA  {
     //will be stored in the 'invertedMatrx' instance variable.  Max matrix size: 10 x 10.
     private double[][] invertedMatrix = new double[10][10]; 
 
-    //The constructor.
+    //BASIC CONSTRUCTOR.
     public Inverse(Double[]... array)   {
 
         super(array);
     }
-
+    
+    
+    //GENERIC CONSTRUCTOR.  This constructor allows for the processing of matrices 
+    //whose elements are classes that implement the Number interface.
+    //length is both row and column dimension.
+    public <T extends Number> Inverse(T[][] passedMatrix, Class<T> type, int length)   {
+    
+        //Overcome the java generics matrix problem by creating the matrix at runtime.
+        //Assign this matrix to the generic type.
+        @SuppressWarnings("unchecked")
+        T[][] theMatrix = (T[][]) Array.newInstance(type, length, length);
+        
+        //Elements that implement Number are here stored as Double.
+        Double[][] matrixObjDouble = new Double[length][length];
+        
+        //Assign the values passed from class Main.
+        theMatrix = passedMatrix;
+        
+        //Iterate over all matrix elements.
+        for (int i = 0; i < passedMatrix.length; i++)   {
+        
+            for (int j = 0; j < passedMatrix[i].length; j++)   {
+           
+                //Transform something that implements Number to Double.
+                matrixObjDouble[i][j] = theMatrix[i][j].doubleValue();
+            }
+            
+            //Populate List 'doubleVal' with the rows. (One entry is one row).
+            this.doubleVal.add(matrixObjDouble[i]);
+        }
+    }  
+       
+            
     //invertedMatrix getter.
     public double[][] getInvertedMatrix()   {
     

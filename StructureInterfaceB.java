@@ -1,6 +1,6 @@
 package gitjavamatrix;
 
-//This interface is specific to square matrices.
+//This interface is specific to square matrix-like structures.
 //Note that the super-interface defines matrix structures that are more general.
 public interface StructureInterfaceB  extends StructureInterfaceA   {
 

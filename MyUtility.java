@@ -4,7 +4,7 @@ import org.apache.commons.math3.linear.*;
 import org.apache.commons.lang3.ArrayUtils;
 
 
-//Create a utility class that will return matrix elements in particular formats.
+//Create a utility class that will return elements of the matrix-like objects in particular formats.
 public abstract class MyUtility   {
 
 
@@ -42,7 +42,7 @@ public abstract class MyUtility   {
     }
     
     
-    //Perhaps the trace of our square matrix structures will be required.  The trace is calculated here:    
+    //If trace is needed, it is calculated here:    
     public static double theTrace(Double[]... array)   {
     
         double trace = 0.0;

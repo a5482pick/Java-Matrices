@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//A class to find the eigenvalues of n x n matrix.
+//A class to find the eigenvalues of n x n matrix-like structure.  (These objects override
+//isItCorrectSize(), so are not necessarily also Invertible.)
 public class Eigenvalues extends Implementation implements StructureInterfaceB  {
 
     //An instance variable to store the eigenvalues.
@@ -33,7 +34,25 @@ public class Eigenvalues extends Implementation implements StructureInterfaceB  
         }
     }
     
-      
+    
+    //Pretend that eigenvalue-possessing objects have a different limit to their element size than e.g.
+    //invertible objects.  
+    public void isItCorrectSize()   {
+    
+        for (int i = 0; i < doubleVal.size(); i++)   {
+        
+            for (int j = 0; j  < doubleVal.get(i).length; j++)   {
+        
+                if (doubleVal.get(i)[j].doubleValue() > 500 || doubleVal.get(i)[j].doubleValue() < -500)   {
+            
+                    System.out.println("\n" + "NOT AN APPROPRIATE ELEMENT VALUE.");
+                    this.setGoAhead(0);
+                }
+            }
+        }
+    }
+    
+        
     //Calculate the eigenvalues of the 2 x 2 matrix example.
     public void eigenvalues2D()  {
     

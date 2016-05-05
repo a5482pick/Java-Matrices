@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
-//Since we may wish to re-use the implementation, we here bring it in to a superclass.
+//Inheritable implementations.
 public class Implementation    {
 
  

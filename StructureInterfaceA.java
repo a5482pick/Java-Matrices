@@ -1,10 +1,10 @@
 package gitjavamatrix;
 
-//An interface type that specifies our fundamental properties for our matrix-like structures:
+//An interface type that specifies fundamental properties for the matrix-like structures:
 //These are matrix dimension and shape, and element size and accuracy.
 public interface StructureInterfaceA   {
 
-    //Specifies how we handle matrix dimension e.g. we can ignore surplus elements.
+    //Specifies handling of matrix dimension e.g. we can ignore surplus elements.
     //n is the number of columns.
     void isCorrectDimension(int n);
     

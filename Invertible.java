@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.reflect.Array;
 
-//A class for calculating inverses of our matrix structures:
-//A new object is instantiated for each new matrix that is required to be inverted.
-public class Inverse extends Implementation implements StructureInterfaceA  {
+
+//A class for creating, and then inverting, invertible matrix-like structures:
+public class Invertible extends Implementation implements StructureInterfaceA  {
 
     //Each matrix instance may have an associated inverse.  Each item of the inverse
     //will be stored in the 'invertedMatrx' instance variable.  Max matrix size: 10 x 10.
     private double[][] invertedMatrix = new double[10][10]; 
 
     //BASIC CONSTRUCTOR.
-    public Inverse(Double[]... array)   {
+    public Invertible(Double[]... array)   {
 
         super(array);
     }
@@ -24,7 +24,7 @@ public class Inverse extends Implementation implements StructureInterfaceA  {
     //GENERIC CONSTRUCTOR.  This constructor allows for the processing of matrices 
     //whose elements are classes that implement the Number interface.
     //length is both row and column dimension.
-    public <T extends Number> Inverse(T[][] passedMatrix, Class<T> type, int length)   {
+    public <T extends Number> Invertible(T[][] passedMatrix, Class<T> type, int length)   {
     
         //Overcome the java generics matrix problem by creating the matrix at runtime.
         //Assign this matrix to the generic type.
@@ -55,7 +55,7 @@ public class Inverse extends Implementation implements StructureInterfaceA  {
     //invertedMatrix getter.
     public double[][] getInvertedMatrix()   {
     
-        return invertedMatrix;
+        return this.invertedMatrix;
     }
     
     //invertedMatrix setter.
@@ -101,7 +101,7 @@ public class Inverse extends Implementation implements StructureInterfaceA  {
             double[] invertedArray1 = inverse.getRow(1);       //bottom.
             
             //Print to screen.
-            System.out.println("Matrix after inversion, reported from class Inverse:");
+            System.out.println("\nMatrix after inversion, reported from class Invertible:");
             System.out.println(Arrays.toString(invertedArray0));
             System.out.println(Arrays.toString(invertedArray1));
             
